@@ -1,0 +1,92 @@
+body {
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    width: 100%;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li:nth-last-child(-n+2) {
+    float: right;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #04AA6D;
+}
+
+div#confirmation {
+    padding-top: 4rem;
+    text-align: center;
+    color: #333;
+    font-size: 2rem;
+}
+
+.textDanger {
+    text-align: center;
+    font-weight: 700;
+    width: 100%;
+    color: #a94442;
+    margin: 0 auto;
+    display: block;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 60px;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  input.button, button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  input.button:hover, button:hover {
+    opacity: 0.8;
+  }
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+}
