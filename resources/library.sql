@@ -17,7 +17,7 @@ CREATE TABLE users (
 INSERT INTO users
     (userID, permission, lastName, firstName, username, email, password)
 VALUES 
-    (1, 1, "John", "Doe", "admin", "admin@example.com", "admin");
+    (1, 1, "John", "Doe", "admin", "admin@example.com", "$2y$12$RSy9zywha1Qlg0ml2fYD4OfnZrESDu2v5h8jOXwNr4dO/HURLF6nO");
 
 /*CREATE TABLE FOR BOOKS*/
 CREATE TABLE books (
