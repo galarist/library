@@ -1,31 +1,32 @@
 # library
 ## Folder Structure:
-    library/
-    |__ index.php
-    |__ controller/
-        |__ create.php
-        |__ delete.php
-        |__ read.php
-        |__ update.pgp
-        |
-        model/
-        |__ conn.php
-        public/
-        |__ css/
-            |__ style.css
-            img/
-            |__ favicon.ico
-            |__ covers/
-                |__ image files
-        resources/
-        |__ library.sql            
-        users/
-        |__ dashboard.php
-        |__ signin.php
-        |__ signout.php
-        |__ signup.php
-        view/
-        |__ footer.php
-        |__ header.php
+    .
+    ├── controller
+    │   ├── create.php
+    │   ├── delete.php
+    │   ├── read.php
+    │   └── update.php
+    ├── index.php
+    ├── model
+    │   └── conn.php
+    ├── public
+    │   ├── css
+    │   │   └── style.css
+    │   └── img
+    │       ├── covers
+    │       │   └── t9i-edit-book-covers-online.jpg
+    │       └── favicon.ico
+    ├── README.md
+    ├── resources
+    │   └── library.sql
+    ├── users
+    │   ├── dashboard.php
+    │   ├── signin.php
+    │   ├── signout.php
+    │   └── signup.php
+    └── view
+        ├── footer.php
+        └── header.php
+
 ## Extra Details:
-* In the signin.php file the PDO connection using **`admin`** for both username and password to connect to the localhost database
+* In the _**signin.php**_ file the PDO connection using **`admin`** for both **username** and **password** to connect to the localhost database
