@@ -37,33 +37,38 @@ try {
 <html lang="en">
 
 <head>
-     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="public/css/style.css">
-     <title>Sign In</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="shortcut icon" href="public/img/favicon.ico" type="image/x-icon">
+    <title>Sign In</title>
 </head>
 
 <body>
-     <?php include 'view/header.php'?>
-     <div class="container">
-          <?php
-               if (isset($message)) {
-               echo '<label class="textDanger">'.$message.'</label>';
-               }
-          ?>
-          <form method="post">
-               <div class="container">
-               <label for="username"><b>Username</b></label>
-               <input type="text" name="username" class="form-control" />
-               <br />
-               <label for="password"><b>Password</b></label>
-               <input type="password" name="password" class="form-control" />
-               <br />
-               <input type="submit" name="login" class="button" value="Login" />
-               </div>
-          </form>
-     </div>
+    <?php include 'view/header.php'?>
+    <div class="container">
+        <?php
+            if (isset($message)) {
+            echo '<label class="textDanger">'.$message.'</label>';
+            }
+
+            if(isset($_SESSION["username"])) {
+                header("location:./");
+            }
+        ?>
+        <form method="post">
+            <div class="container">
+            <label for="username"><b>Username</b></label>
+            <input type="text" name="username" class="form-control" />
+            <br />
+            <label for="password"><b>Password</b></label>
+            <input type="password" name="password" class="form-control" />
+            <br />
+            <input type="submit" name="login" class="button" value="Login" />
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

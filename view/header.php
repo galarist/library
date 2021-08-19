@@ -4,7 +4,7 @@
     <ul>
       <li><a class="active" href=".">Home</a></li>
       <li><a href="signout.php">Sign Out</a></li>
-      <li><a href="dashboard.php">Admin</a></li>
+      <li><a href="dashboard.php">Dashboard</a></li>
     </ul>
     <?php
   } else {
