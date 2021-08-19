@@ -14,6 +14,11 @@ CREATE TABLE users (
     PRIMARY KEY (userID)
 );
 
+INSERT INTO users
+    (userID, permission, lastName, firstName, username, email, password)
+VALUES 
+    (1, 1, "John", "Doe", "admin", "admin@example.com", "admin");
+
 /*CREATE TABLE FOR BOOKS*/
 CREATE TABLE books (
     bookID int,
@@ -23,4 +28,4 @@ CREATE TABLE books (
     ranking int,
     cover varchar(255),
     PRIMARY KEY (bookID)
-)
+);
