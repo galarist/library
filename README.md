@@ -29,4 +29,4 @@
         └── header.php
 
 ## Extra Details:
-* In the _**signin.php**_ file the PDO connection using **`admin`** for both **username** and **password** to connect to the localhost database
+* In the _**conn.php**_ file the PDO connection using **`admin`** for both **username** and **password** to connect to the localhost database
