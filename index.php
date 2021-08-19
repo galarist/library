@@ -12,7 +12,6 @@
 
 <body>
     <?php include ('view/header.php'); ?>
-    <?php include ('controller/Books/list.php'); ?>
     <?php include ('view/footer.php'); ?>
 </body>
 

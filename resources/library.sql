@@ -4,7 +4,7 @@ USE library;
 
 /*CREATE USERS TABLE*/
 CREATE TABLE users (
-    userID int,
+    userID int NOT NULL AUTO_INCREMENT,
     permission int,
     lastName varchar(255),
     firstName varchar(255),

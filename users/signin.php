@@ -1,5 +1,52 @@
 <?php
 session_start();
+require '../model/conn.php'; //require connection script
+if(isset($_POST['login'])){  
+    // try {
+        $dsn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+        $dsn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+//ensure fields are not empty
+$username = !empty($_POST['username']) ? trim($_POST['username']) : null;
+$passwordAttempt = !empty($_POST['password']) ? trim($_POST['password']) : null;
+
+//Retrieve the user account information for the given username.
+$sql = "SELECT * FROM users WHERE username = :username";
+$stmt = $pdo->prepare($sql);
+
+//Bind value.
+$stmt->bindValue(':username', $username);
+
+//Execute.
+$stmt->execute();
+
+//Fetch row.
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+//If $row is FALSE.
+if($user === false){
+   echo '<script>alert("invalid username or password")</script>';
+} else{
+     
+    //Compare and decrypt passwords.
+    $validPassword = password_verify($passwordAttempt, $user['password']);
+    
+    //If $validPassword is TRUE, the login has been successful.
+    if($validPassword){
+        
+        //Provide the user with a login session.
+         
+        $_SESSION['username'] = $username;
+       echo '<script>window.location.replace("dashboard.php");</script>';
+        exit;
+        
+    } else{
+        //$validPassword was FALSE. Passwords do not match.
+        echo '<script>alert("invalid username or password")</script>';
+    }
+}
+}
+/*session_start();
 $host = "localhost";
 $username = "admin";
 $password = "admin";
@@ -31,7 +78,7 @@ try {
     }
 } catch (PDOException $error) {
     $message = $error->getMessage();
-}
+}*/
 ?>
 <html>
 <html lang="en">
@@ -61,10 +108,8 @@ try {
             <div class="container">
             <label for="username"><b>Username</b></label>
             <input type="text" name="username" class="form-control" />
-            <br />
             <label for="password"><b>Password</b></label>
             <input type="password" name="password" class="form-control" />
-            <br />
             <input type="submit" name="login" class="button" value="Login" />
             </div>
         </form>

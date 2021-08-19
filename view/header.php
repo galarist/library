@@ -12,7 +12,7 @@
     <ul>
       <li><a class="active" href="/library">Home</a></li>
       <li><a href="/library/users/signin.php">Sign In</a></li>
-      <li><a href="signup.php">Sign Up</a></li>
+      <li><a href="/library/users/signup.php">Sign Up</a></li>
     </ul>
     <?php 
   }
