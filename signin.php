@@ -23,7 +23,7 @@ try {
             $count = $statement->rowCount();
             if ($count > 0) {
                 $_SESSION["username"] = $_POST["username"];
-                header("location:home.php");
+                header("location:dashboard.php");
             } else {
                 $message = '<label>Wrong Data</label>';
             }
@@ -41,7 +41,7 @@ try {
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="public/css/style.css">
-     <title>Document</title>
+     <title>Sign In</title>
 </head>
 
 <body>
