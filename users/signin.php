@@ -40,13 +40,13 @@ try {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="public/css/style.css">
-    <link rel="shortcut icon" href="public/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/library/public/css/style.css">
+    <link rel="shortcut icon" href="/library/public/img/favicon.ico" type="image/x-icon">
     <title>Sign In</title>
 </head>
 
 <body>
-    <?php include 'view/header.php'?>
+    <?php include '../view/header.php'?>
     <div class="container">
         <?php
             if (isset($message)) {
@@ -54,7 +54,7 @@ try {
             }
 
             if(isset($_SESSION["username"])) {
-                header("location:./");
+                header("location:/library");
             }
         ?>
         <form method="post">
