@@ -37,7 +37,7 @@
             </div>
         </article>
     </section>
-    <?php include ('view/footer.php'); ?>
+    <?php include ('view/footer.html'); ?>
 </body>
 
 </html>
