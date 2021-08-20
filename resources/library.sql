@@ -22,11 +22,20 @@ VALUES
 
 /*CREATE TABLE FOR BOOKS*/
 CREATE TABLE books (
-    bookID int,
+    bookID int NOT NULL AUTO_INCREMENT,
     title varchar(255),
     author varchar(255),
     bookPlot varchar(255),
     ranking int,
+    copies int,
+    PRIMARY KEY (bookID)
+);
+/*CREATE TABLE FOR BOOK COVERS*/
+CREATE TABLE covers (
+    bookID int NOT NULL references books(bookID),
     cover varchar(255),
     PRIMARY KEY (bookID)
 );
+
+ALTER TABLE covers 
+ADD FOREIGN KEY (bookID) REFERENCES books(bookID);
