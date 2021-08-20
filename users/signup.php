@@ -63,15 +63,6 @@ if (isset($_POST['submit'])) {
 <body>
     <?php include '../view/header.php'?>
     <div class="container">
-        <?php
-            if (isset($message)) {
-                echo '<label class="textDanger">'.$message.'</label>';
-            }
-
-            if (isset($_SESSION["username"])) {
-                header("location:/library");
-            }
-        ?>
         <form method="post">
             <div class="container">
                 <label for="firstName"><b>First Name</b></label>
@@ -87,6 +78,15 @@ if (isset($_POST['submit'])) {
                 <button name="submit" type="submit">register</button>
             </div>
         </form>
+        <?php
+            if (isset($message)) {
+                echo '<label class="textDanger">'.$message.'</label>';
+            }
+
+            if (isset($_SESSION["username"])) {
+                header("location:/library");
+            }
+        ?>
     </div>
 </body>
 
