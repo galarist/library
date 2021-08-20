@@ -26,6 +26,7 @@ CREATE TABLE books (
     title varchar(255),
     author varchar(255),
     bookPlot varchar(255),
+    published int,
     ranking int,
     copies int,
     PRIMARY KEY (bookID)
