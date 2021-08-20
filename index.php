@@ -13,7 +13,11 @@
 <body>
     <?php include ('view/header.php'); ?>
     <header>
-        <?php echo "Welcome <span>", $_SESSION["username"], "</span>!" ?>
+        <?php 
+        if(isset($_SESSION["username"])) {
+            echo "Welcome <span>", $_SESSION["username"], "</span>!";
+        }
+        ?>
     </header>
     <section>
         <article>
