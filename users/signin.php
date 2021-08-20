@@ -1,47 +1,42 @@
 <?php
 session_start();
-require '../model/conn.php'; //require connection script
+require '../model/conn.php'; // Connection script
 try {
     if (isset($_POST['login'])) {
-        // try {
         $dsn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
         $dsn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-        //ensure fields are not empty
+        // Ensure fields are not empty
         $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
-        $passwordAttempt = !empty($_POST['password']) ? trim($_POST['password']) : null;
+        $pwd = !empty($_POST['password']) ? trim($_POST['password']) : null;
     
-        //Retrieve the user account information for the given username.
+        // Retrieve the user account information for the given username.
         $sql = "SELECT * FROM users WHERE username = :username";
         $stmt = $pdo->prepare($sql);
     
-        //Bind value.
+        // Bind value.
         $stmt->bindValue(':username', $username);
     
-        //Execute.
+        // Execute.
         $stmt->execute();
     
-        //Fetch row.
+        // Fetch row.
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-        //If $row is FALSE.
+
+        // Checks if $row is FALSE.
         if ($user === false) {
             $message = '<label>Wrong username/password</label>';
         } else {
-         
-        //Compare and decrypt passwords.
-            $validPassword = password_verify($passwordAttempt, $user['password']);
-        
-            //If $validPassword is TRUE, the login has been successful.
-            if ($validPassword) {
-            
-            //Provide the user with a login session.
-             
+        // Compare and decrypt passwords.
+            $checking = password_verify($pwd, $user['password']);
+            // If password verification is TRUE, the login has been successful.
+            if ($checking) {
+                // Provide the user with a login session.
                 $_SESSION['username'] = $username;
                 header("Location: dashboard.php");
                 exit;
             } else {
-                //$validPassword was FALSE. Passwords do not match.
+                // Otherwise, the password does not match.
                 $message = '<label>Wrong username/password</label>';
             }
         }

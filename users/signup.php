@@ -1,30 +1,32 @@
 <?php
-//define('BASEPATH', true); //access connection script if you omit this line file will be blank
-require '../model/conn.php'; //require connection script
-
+require '../model/conn.php'; // Connection script
 if (isset($_POST['submit'])) {
     try {
         $dsn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
         $dsn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+        // Input field call
         $fName = $_POST['firstName'];
         $lName = $_POST['lastName'];
         $user = $_POST['username'];
         $email = $_POST['email'];
-        $pass = $_POST['password'];
-
-        $pass = password_hash($pass, PASSWORD_BCRYPT, array("cost" => 12));
+        $pwd = $_POST['password'];
+        // Increase the default cost for BCRYPT to 12
+        // Also switched to 60 characters (BCRYPT)
+        $pwd = password_hash($pwd, PASSWORD_BCRYPT, array("cost" => 12));
         
-        //Check if username exists
+        // Check if username exists
         $sql = "SELECT COUNT(username) AS num FROM users WHERE username = :username";
         $stmt = $pdo->prepare($sql);
 
         $stmt->bindValue(':username', $user);
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-        if ($row['num'] > 0) {
-            echo '<script>alert("Username already exists")</script>';
+        if(!isset($fName) || trim($lName) == '' || trim($user) == '' || trim($email) == '' || trim($pwd) == '')
+        {
+            $message = "You did not fill out the fields.";
+        } 
+        elseif ($row['num'] > 0) {
+            $message = "Username already exists";
         } else {
             $stmt = $dsn->prepare("INSERT INTO users (firstName, lastName, username, email, password) 
                     VALUES (:firstName, :lastName, :username, :email, :password)");
@@ -32,7 +34,7 @@ if (isset($_POST['submit'])) {
             $stmt->bindParam(':lastName', $lName);
             $stmt->bindParam(':username', $user);
             $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':password', $pass);
+            $stmt->bindParam(':password', $pwd);
             if ($stmt->execute()) {
                 echo '<script>alert("New account created.")</script>';
                 //redirect to another page
@@ -43,7 +45,7 @@ if (isset($_POST['submit'])) {
         }
     } catch (PDOException $e) {
         $error = "Error: " . $e->getMessage();
-        echo '<script type="text/javascript">alert("'.$error.'");</script>';
+        $message = $error;
     }
 }
 
@@ -72,17 +74,17 @@ if (isset($_POST['submit'])) {
         ?>
         <form method="post">
             <div class="container">
-            <label for="firstName"><b>First Name</b></label>
-            <input type="text" required="required" name="firstName" placeholder="First Name">
-            <label for="lastName"><b>Last Name</b></label>
-            <input type="text" required="required" name="lastName" placeholder="Last Name">
-            <label for="username"><b>Username</b></label>
-            <input type="text" required="required" name="username" placeholder="Username">
-            <label for="email"><b>Password</b></label>
-            <input required="required" type="email" name="email" placeholder="Email">
-            <label for="password"><b>Password</b></label>
-            <input required="required" type="password" name="password" placeholder="Password">
-            <button name="submit" type="submit">register</button>
+                <label for="firstName"><b>First Name</b></label>
+                <input type="text" name="firstName" placeholder="First Name">
+                <label for="lastName"><b>Last Name</b></label>
+                <input type="text" name="lastName" placeholder="Last Name">
+                <label for="username"><b>Username</b></label>
+                <input type="text" name="username" placeholder="Username">
+                <label for="email"><b>Password</b></label>
+                <input type="email" name="email" placeholder="Email">
+                <label for="password"><b>Password</b></label>
+                <input type="password" name="password" placeholder="Password">
+                <button name="submit" type="submit">register</button>
             </div>
         </form>
     </div>
