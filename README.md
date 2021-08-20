@@ -30,3 +30,12 @@
 
 ## Extra Details:
 * In the _**conn.php**_ file the PDO connection using **`admin`** for both **username** and **password** to connect to the localhost database
+* Two ___admin___ users:
+    * **John Doe**
+        - Username: John
+        - Password: admin
+        - Permission: 1 (as admin)
+    * **Jane Doe** 
+        - Username: Jane
+        - Password: admin
+        - Permission: 1 (as admin)
