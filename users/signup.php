@@ -36,11 +36,11 @@ if (isset($_POST['submit'])) {
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':password', $pwd);
             if ($stmt->execute()) {
-                echo '<script>alert("New account created.")</script>';
+                $message = "New account created.";
                 //redirect to another page
-                header("Location: /library/users/signin.php");
+                header("refresh:2;url=/library/users/signin.php");
             } else {
-                echo '<script>alert("An error occurred")</script>';
+                $message = "An error occurred!";
             }
         }
     } catch (PDOException $e) {
