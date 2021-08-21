@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
         
         // Check if username exists
         $sql = "SELECT COUNT(username) AS num FROM users WHERE username = :username";
-        $stmt = $pdo->prepare($sql);
+        $stmt = $conn->prepare($sql);
 
         $stmt->bindValue(':username', $user);
         $stmt->execute();

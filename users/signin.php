@@ -12,7 +12,7 @@ try {
     
         // Retrieve the user account information for the given username.
         $sql = "SELECT * FROM users WHERE username = :username";
-        $stmt = $pdo->prepare($sql);
+        $stmt = $conn->prepare($sql);
     
         // Bind value.
         $stmt->bindValue(':username', $username);
