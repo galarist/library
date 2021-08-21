@@ -5,7 +5,7 @@ require 'model/conn.php';
 try {
     $dsn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
     $dsn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $query = $pdo->prepare("SELECT * FROM books");
+    $query = $conn->prepare("SELECT * FROM books");
     $query->execute();
     $results = $query->fetchAll();
     if ($query->rowCount() > 0) {
