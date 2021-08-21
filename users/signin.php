@@ -33,7 +33,18 @@ try {
             if ($checking) {
                 // Provide the user with a login session.
                 $_SESSION['username'] = $username;
-                header("Location: dashboard.php");
+                $username = $_SESSION['username'];
+                // Make a session for permission
+                $stmt->execute();
+                $results = $stmt->fetchAll();
+                foreach ($results as $key) {
+                    $_SESSION["permission"] = $key['permission'];
+                    if (isset($_SESSION["username"]) && $key['permission'] == '1') {
+                        header("Location: dashboard.php");
+                    } else {
+                        header("Location: /library");
+                    }
+                }
                 exit;
             } else {
                 // Otherwise, the password does not match.

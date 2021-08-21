@@ -2,6 +2,8 @@
 session_start();
 if(!isset($_SESSION["username"])) {
     header("Location:/library");
+} elseif ($_SESSION['permission'] == 0) {
+    header("Location:/library");
 }
 ?>
 <html lang="en">
@@ -18,7 +20,7 @@ if(!isset($_SESSION["username"])) {
 <body>
     <?php include '../view/header.php'?>
     <header>
-        <?php echo "Welcome <span>", $_SESSION["username"], "</span>!" ?>
+        <?php echo "Welcome <span>", $_SESSION["username"], "</span>! <br> Permission: ", $_SESSION["permission"] ?>
 
         <div class="actionBar">
             <button>Add New Book</button>

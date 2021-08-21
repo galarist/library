@@ -38,10 +38,15 @@ li a {
     padding: 14px 16px;
     text-decoration: none;
     font-weight: 600;
+    float: right;
 }
 
 li:nth-last-child(-n+2) {
     float: right;
+}
+
+li:first-of-type {
+    float: left;
 }
 
 li a:hover:not(.active) {

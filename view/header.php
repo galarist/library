@@ -4,7 +4,7 @@
     <ul>
       <li><a class="active" href="/library">Home</a></li>
       <li><a href="/library/users/signout.php">Sign Out</a></li>
-      <li><a href="/library/users/dashboard.php">Dashboard</a></li>
+      <?php echo ($_SESSION["permission"] == 1) ? '<li><a href="/library/users/dashboard.php">Dashboard</a></li>' : '' ?>
     </ul>
     <?php
   } else {

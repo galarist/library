@@ -15,7 +15,7 @@
     <header>
         <?php
         if (isset($_SESSION["username"])) {
-            echo "Welcome <span>", $_SESSION["username"], "</span>!";
+            echo "Welcome <span>", $_SESSION["username"], "</span>! <br> Permission: ", $_SESSION["permission"];
         }
         ?>
     </header>
