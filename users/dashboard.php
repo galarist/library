@@ -29,6 +29,7 @@ if(!isset($_SESSION["username"])) {
     <section>
         <?php include '../controller/read.php'; ?>
     </section>
+    <?php include('../view/footer.php'); ?>
 </body>
 
 </html>

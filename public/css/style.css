@@ -74,9 +74,9 @@ div#confirmation {
 }
 
 .container {
-    width: 80%;
+    max-width: 600;
     margin: 0 auto;
-    padding-top: 60px;
+    padding: 60px 5px 0;
 }
 
 input[type=text],
@@ -130,7 +130,7 @@ section {
 }
 
 article {
-    max-width: 300px;
+    max-width: 280px;
     position: relative;
     box-sizing: border-box;
     text-align: center;
@@ -142,7 +142,7 @@ article {
     grid-template-rows: 300px 300px 100px;
     /* The grid-template-columns CSS property 
     defines the line names and track sizing functions of the grid columns. */
-    grid-template-columns: 300px 300px 100px; 
+    grid-template-columns: 280px 300px 100px; 
     grid-gap: 3px;
 }
 
