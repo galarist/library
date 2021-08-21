@@ -24,7 +24,7 @@
             include 'controller/read.php';
         ?>
     </section>
-    <?php include('view/footer.html'); ?>
+    <?php include('view/footer.php'); ?>
 </body>
 
 </html>
