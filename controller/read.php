@@ -39,7 +39,7 @@ try {
             <legend>
                 <div>
                     <button>Edit</button>
-                    <button>Delete</button>
+                    <a href="../controller/delete.php?id='.$row['bookID'].'">Delete</a>
                 </div>
             </legend>
             ';

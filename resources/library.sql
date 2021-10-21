@@ -40,3 +40,9 @@ CREATE TABLE covers (
 
 ALTER TABLE covers 
 ADD FOREIGN KEY (bookID) REFERENCES books(bookID);
+
+ALTER TABLE covers
+ADD CONSTRAINT FK_BooCov_Cascade_Delete
+FOREIGN KEY (bookID) 
+REFERENCES books(bookID)
+ON DELETE CASCADE;
