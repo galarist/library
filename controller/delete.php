@@ -13,6 +13,7 @@ try {
     // use exec() because no results are returned
     $conn->exec($sql);
     echo "Record deleted successfully";
+    header("Location: ../users/dashboard.php");
 } catch(PDOException $e) {
     echo $sql . "<br>" . $e->getMessage();
 }

@@ -1,6 +1,7 @@
 body {
     margin: 0;
     background-color: rgb(221, 221, 221);
+    box-sizing: border-box;
 }
 
 header {
@@ -79,6 +80,31 @@ div#confirmation {
     padding: 60px 5px 0;
 }
 
+.actionBar fieldset {
+    border: 0;
+    box-shadow: none;
+}
+
+.actionBar legend {    
+    border: 0;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    border: solid rgba(99, 99, 99, 0.5) 2px;
+    border-radius: 6px;
+    padding: 4px 2px;
+    background-color: transparent;
+    color: #333;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 1.5em;
+}
+
+.actionBar legend h1 {
+    font-size: 1em;
+    margin: 0;
+}
+
 input[type=text],
 input[type=password],
 input[type=email] {
@@ -88,6 +114,10 @@ input[type=email] {
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+}
+
+input[type="submit"] {
+    margin: 10px 0;
 }
 
 input.button,
@@ -106,6 +136,40 @@ button:hover {
     opacity: 0.8;
 }
 
+.containerSelect {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-wrap {
+    position: relative;
+}
+
+input[type=file] {
+    z-index: -1;
+    position: absolute;
+    display: none;
+}
+
+.new-button, #newBook {
+    display: inline-block;
+    max-width: 180px;
+    width: 200px;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 800;
+    background-color: #333;
+    box-shadow: rgb(50 50 93 / 25%) 0px 13px 27px -5px, rgb(0 0 0 / 30%) 0px 8px 16px -8px;
+    color: white;
+    padding: 14px 0;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+}
+
 .actionBar {
     max-width: 600px;
     display: block;
@@ -121,6 +185,16 @@ button:hover {
     font-weight: 800;
     background-color: #333;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.bigTitle {
+    font-size: 3em;
+    max-width: 544px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    border-radius: 6px;
+    border: solid rgba(99, 99, 99, 0.5) 2px;
+    margin: 0 auto 20px;
+    color: #333;
 }
 
 section {
@@ -142,7 +216,7 @@ article {
     grid-template-rows: 300px 300px 100px;
     /* The grid-template-columns CSS property 
     defines the line names and track sizing functions of the grid columns. */
-    grid-template-columns: 280px 300px 100px; 
+    grid-template-columns: 280px 300px 100px;
     grid-gap: 3px;
 }
 
@@ -207,4 +281,8 @@ footer {
     background-color: red;
     color: white;
     text-align: center;
+}
+
+.hidden {
+    background-color: transparent;
 }

@@ -13,7 +13,9 @@ if (strpos($url, 'users') == true) {
 try {
     if (isset($_SESSION["username"])) {
         $currentUser = $_SESSION["username"];
-        $database = "SELECT * FROM books INNER JOIN covers INNER JOIN users ON username = '$currentUser'";
+        $database = "SELECT * FROM books 
+                    INNER JOIN covers ON books.bookID=covers.bookID 
+                    LEFT JOIN users ON username = '$currentUser'";
     } else {
         $currentUser = '';
         $database = "SELECT * FROM books INNER JOIN covers";
@@ -25,16 +27,18 @@ try {
     $results = $query->fetchAll();
     if ($query->rowCount() > 0) {
     } else {
-        echo 'You Have no Books Stored';
+        echo '<h2>You Have No Books Stored</h2>';
     }
     foreach ($results as $row) {
-        if ($row['cover'] == null) {
+        if ($row['cover'] == null && strpos($url, 'users') == true) {
             $imagePath = "/library/public/img/covers/default.jpg";
+        } elseif ($row['cover'] !== null && strpos($url, 'users') == false) {
+            $imagePath = "public/img/covers/";
         } else {
-            $imagePath = "/library/public/img/covers/.jpg";
-        }
+            $imagePath = "../public/img/covers/";
+        } 
 
-        if (isset($_SESSION["username"]) && $row['permission'] == '1') {
+        if (isset($_SESSION["username"]) && $row['permission'] == '1' && strpos($url, 'users') == true) {
             $actionButtons = '
             <legend>
                 <div>
@@ -52,7 +56,7 @@ try {
             <div>
                 <fieldset>
                     '.$actionButtons.'
-                    <img src="'.$imagePath.'" alt="Cover">
+                    <img src="'.$imagePath.$row['cover'].'" alt="Cover">
                     <p>Author: '.$row['author'].'</p>
                 </fieldset>
             </div>
