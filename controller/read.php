@@ -18,7 +18,8 @@ try {
                     LEFT JOIN users ON username = '$currentUser'";
     } else {
         $currentUser = '';
-        $database = "SELECT * FROM books INNER JOIN covers";
+        $database = "SELECT * FROM books 
+        INNER JOIN covers ON books.bookID=covers.bookID";
     }
     $dsn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
     $dsn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -42,8 +43,8 @@ try {
             $actionButtons = '
             <legend>
                 <div>
-                    <button>Edit</button>
-                    <a href="../controller/delete.php?id='.$row['bookID'].'">Delete</a>
+                    <a href="" onclick="retur makeInput(this)" class="actionBtn" href="">Edit</a>
+                    <a class="actionBtn" href="../controller/delete.php?id='.$row['bookID'].'">Delete</a>
                 </div>
             </legend>
             ';
@@ -54,10 +55,10 @@ try {
         echo '
         <article>
             <div>
-                <fieldset>
+                <fieldset id="details">
                     '.$actionButtons.'
                     <img src="'.$imagePath.$row['cover'].'" alt="Cover">
-                    <p>Author: '.$row['author'].'</p>
+                    <p id="author">Author: '.$row['author'].'</p>
                 </fieldset>
             </div>
         </article>
