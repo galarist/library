@@ -42,7 +42,7 @@ li a {
     float: right;
 }
 
-li:nth-last-child(-n+2) {
+li:nth-last-child(-n+3) {
     float: right;
 }
 
@@ -244,7 +244,7 @@ fieldset p {
 }
 
 legend {
-    padding: 4px 2px;
+    padding: 10px 0;
     background-color: #333;
     color: white;
     font-weight: 700;
@@ -263,6 +263,25 @@ article button {
     background-color: #333;
     padding: 6px 20px;
     margin: 2px 6px;
+}
+
+.actionBtn {
+    padding: 4px 30px;
+    font-size: 22px;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: #ffacac;
+    color: #53488d;
+    text-decoration: none;
+    color: white;
+}
+
+.actionBtn:first-of-type {
+    background-color: #04AA6D;
+}
+
+.actionBtn:last-of-type {
+    background-color: #a94442;
 }
 
 article button:last-of-type {
