@@ -28,8 +28,10 @@ if (isset($_POST['submit'])) {
         elseif ($row['num'] > 0) {
             $message = "Username already exists";
         } else {
+            // Create user
             $stmt = $dsn->prepare("INSERT INTO users (firstName, lastName, username, email, password) 
                     VALUES (:firstName, :lastName, :username, :email, :password)");
+            // Binds a parameter to the specified variable name
             $stmt->bindParam(':firstName', $fName);
             $stmt->bindParam(':lastName', $lName);
             $stmt->bindParam(':username', $user);
@@ -37,8 +39,6 @@ if (isset($_POST['submit'])) {
             $stmt->bindParam(':password', $pwd);
             if ($stmt->execute()) {
                 $message = "New account created.";
-                //redirect to another page
-                header("refresh:2;url=/library/users/signin.php");
             } else {
                 $message = "An error occurred!";
             }
@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
         $message = $error;
     }
 }
-
+    session_start();
 ?>
 
 <head>
@@ -81,10 +81,6 @@ if (isset($_POST['submit'])) {
         <?php
             if (isset($message)) {
                 echo '<label class="textDanger">'.$message.'</label>';
-            }
-
-            if (isset($_SESSION["username"])) {
-                header("location:/library");
             }
         ?>
     </div>
