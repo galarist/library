@@ -22,12 +22,12 @@ if(!isset($_SESSION["username"])) {
     <?php include '../view/header.php'?>
     <header>
         <?php echo "Welcome <span>", $_SESSION["username"], "</span>! <br> Permission: ", $_SESSION["permission"] ?>
-
+    </header>
         <div class="actionBar">
             <form action="../controller/create.php" method="post" enctype="multipart/form-data">
                 <fieldset class="hidden">
                     <legend>
-                        <h1>Adding Book</h1>
+                        <h1>Add Book</h1>
                     </legend>
                 </fieldset>
                 <label for="title">Title</label>
@@ -53,11 +53,10 @@ if(!isset($_SESSION["username"])) {
         </div>
         <?php
             if (isset($_SESSION['message']) && $_SESSION['message']) {
-                printf('<b>%s</b>', $_SESSION['message']);
+                printf('<b class="successMsg">%s</b>', $_SESSION['message']);
                 unset($_SESSION['message']);
             }
         ?>
-    </header>
     <section>
         <h1 class="bigTitle">Books</h1>
         <?php include '../controller/read.php'; ?>

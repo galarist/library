@@ -43,7 +43,7 @@ try {
             $actionButtons = '
             <legend>
                 <div>
-                    <a href="" onclick="retur makeInput(this)" class="actionBtn" href="">Edit</a>
+                    <a class="actionBtn" href="../controller/update.php?id='.$row['bookID'].'">Edit</a>
                     <a class="actionBtn" href="../controller/delete.php?id='.$row['bookID'].'">Delete</a>
                 </div>
             </legend>

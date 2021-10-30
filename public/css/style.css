@@ -101,8 +101,17 @@ div#confirmation {
 }
 
 .actionBar legend h1 {
-    font-size: 1em;
+    font-size: 2em;
     margin: 0;
+}
+
+.successMsg {
+    text-align: center;
+    width: 100%;
+    display: block;
+    font-size: 1.6em;
+    margin: 0 0 10px;
+    color: darkgreen;
 }
 
 input[type=text],
