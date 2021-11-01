@@ -10,6 +10,7 @@ if (isset($_POST['submit'])) {
         $user = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $pwd = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+        $permission = filter_var($_POST['permission'], FILTER_SANITIZE_NUMBER_INT);
         // Increase the default cost for BCRYPT to 12
         // Also switched to 60 characters (BCRYPT)
         $pwd = password_hash($pwd, PASSWORD_BCRYPT, array("cost" => 12));
@@ -21,7 +22,7 @@ if (isset($_POST['submit'])) {
         $stmt->bindValue(':username', $user);
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        if(!isset($fName) || trim($lName) == '' || trim($user) == '' || trim($email) == '' || trim($pwd) == '')
+        if(trim($permission) == '' || !isset($fName) || trim($lName) == '' || trim($user) == '' || trim($email) == '' || trim($pwd) == '')
         {
             $message = "You did not fill out the fields.";
         } 
@@ -29,14 +30,15 @@ if (isset($_POST['submit'])) {
             $message = "Username already exists";
         } else {
             // Create user
-            $stmt = $dsn->prepare("INSERT INTO users (firstName, lastName, username, email, password) 
-                    VALUES (:firstName, :lastName, :username, :email, :password)");
+            $stmt = $dsn->prepare("INSERT INTO users (permission, firstName, lastName, username, email, password) 
+                    VALUES (:permission, :firstName, :lastName, :username, :email, :password)");
             // Binds a parameter to the specified variable name
             $stmt->bindParam(':firstName', $fName);
             $stmt->bindParam(':lastName', $lName);
             $stmt->bindParam(':username', $user);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':password', $pwd);
+            $stmt->bindParam(':permission', $permission);
             if ($stmt->execute()) {
                 $message = "New account created.";
             } else {
@@ -71,10 +73,12 @@ if (isset($_POST['submit'])) {
                 <input type="text" name="lastName" placeholder="Last Name">
                 <label for="username"><b>Username</b></label>
                 <input type="text" name="username" placeholder="Username">
-                <label for="email"><b>Password</b></label>
+                <label for="email"><b>Email</b></label>
                 <input type="email" name="email" placeholder="Email">
                 <label for="password"><b>Password</b></label>
                 <input type="password" name="password" placeholder="Password">
+                <label for="permission"><b>Permission</b></label>
+                <input type="text" name="permission" placeholder="1 or 0">
                 <button name="submit" type="submit">register</button>
             </div>
         </form>
