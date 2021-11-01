@@ -127,6 +127,10 @@ try {
 } catch (PDOException $error) {
     echo $error . "<br>" . $error->getMessage();
 }
+// Only admin can edit
+if (!isset($_SESSION["username"]) && $_SESSION['permission'] !== '1') {
+    header('Location: ../');
+}
 ?>
 <script>
     var input = document.getElementById('cover');

@@ -38,6 +38,8 @@ if(!isset($_SESSION["username"])) {
                 <input type="text" name="published" id="published" placeholder="YYYY"><br>
                 <label for="copies">Copies</label><br>
                 <input type="text" name="copies" id="copies" placeholder="Number Of Copies"><br>
+                <label for="bookPlot">Book Plot</label><br>
+                <textarea type="text" name="bookPlot" id="bookPlot" placeholder="Book Plot"></textarea><br>
                 <span class="containerSelect">
                     <span class="button-wrap">
                         <label class="new-button" for="cover"> Upload Cover </label>
