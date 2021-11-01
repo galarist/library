@@ -36,8 +36,10 @@ if(!isset($_SESSION["username"])) {
                 <input type="text" name="author" id="author" placeholder="Author">
                 <label for="published">First Published Year</label><br>
                 <input type="text" name="published" id="published" placeholder="YYYY"><br>
-                <label for="copies">Copies</label><br>
-                <input type="text" name="copies" id="copies" placeholder="Number Of Copies"><br>
+                <label for="copies">Copies Sold</label><br>
+                <input type="text" name="copies" id="copies" placeholder="Number Of Copies Sold"><br>
+                <label for="bookRanking">Book Ranking</label><br>
+                <input type="text" name="bookRanking" id="bookRanking" placeholder="Book Ranking"><br>
                 <label for="bookPlot">Book Plot</label><br>
                 <textarea type="text" name="bookPlot" id="bookPlot" placeholder="Book Plot"></textarea><br>
                 <span class="containerSelect">

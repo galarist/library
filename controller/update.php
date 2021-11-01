@@ -47,6 +47,10 @@ try {
                 <input type="text" name="published" id="published" placeholder="YYYY" value="'.$key['published'].'"><br>
                 <label for="copies">Copies</label><br>
                 <input type="text" name="copies" id="copies" placeholder="Number Of Copies" value="'.$key['copies'].'"><br>
+                <label for="bookRanking">Book Ranking</label><br>
+                <input type="text" name="bookRanking" id="bookRanking" placeholder="Book Ranking" value="'.filter_var($key['ranking'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION).'"><br>
+                <label for="bookPlot">Book Plot</label><br>
+                <textarea type="text" name="bookPlot" id="bookPlot" placeholder="Book Plot">'.$key['bookPlot'].'</textarea><br>
                 <span class="containerSelect">
                     <span class="button-wrap">
                         <label class="new-button" for="cover">Change Cover</label>
@@ -100,18 +104,24 @@ try {
             $author = filter_var($_POST['author'], FILTER_SANITIZE_STRING);
             $published = filter_var($_POST['published'], FILTER_SANITIZE_NUMBER_INT);
             $copies = filter_var($_POST['copies'], FILTER_SANITIZE_NUMBER_INT);
+            $ranking = filter_var($_POST['bookRanking'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $bookPlot = filter_var($_POST['bookPlot'], FILTER_SANITIZE_URL);
             // Update data
             $stmt = $dsn->prepare("UPDATE books, covers 
             SET title = :title,
                 author = :author,
+                bookPlot = :bookPlot,
                 published = :published,
+                ranking = :ranking,
                 copies = :copies,
                 cover = '$newFileName'
             WHERE books.bookID = covers.bookID 
             AND books.bookID = '$bookIDSession'");
             $stmt->bindParam(':title', $title);
             $stmt->bindParam(':author', $author);
+            $stmt->bindParam(':bookPlot', $bookPlot);
             $stmt->bindParam(':published', $published);
+            $stmt->bindParam(':ranking', $ranking);
             $stmt->bindParam(':copies', $copies);
             
             // execute the query

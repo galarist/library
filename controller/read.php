@@ -59,7 +59,7 @@ try {
                 <fieldset id="details">
                     '.$actionButtons.'
                     <img src="'.$imagePath.$row['cover'].'" alt="Cover">
-                    <p id="author">Author: '.$row['author'].'</p>
+                    <p id="author">Book Title:<br> '.$row['title'].'</p>
                 </fieldset>
             </div>
         </article>

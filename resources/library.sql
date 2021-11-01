@@ -25,9 +25,9 @@ CREATE TABLE books (
     bookID int NOT NULL AUTO_INCREMENT,
     title varchar(255),
     author varchar(255),
-    bookPlot varchar(255),
+    bookPlot LONGTEXT,
     published int,
-    ranking int,
+    ranking float,
     copies int,
     PRIMARY KEY (bookID)
 );
