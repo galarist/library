@@ -39,4 +39,3 @@
         - Username: Jane
         - Password: admin
         - Permission: 1 (as admin)
-* **The page automatically redirects after 2 seconds of successfully created new user**
