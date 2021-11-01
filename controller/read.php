@@ -3,7 +3,7 @@ ini_set('display_errors', "1");
 // $_SERVER['SERVER_NAME'] gives the value of the server name as defined in host configuration
 // $_SERVER['REQUEST_URI'] contains the URI of the current page
 $url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-
+// Checkks if url contains /users/
 if (strpos($url, 'users') == true) {
     require '../model/conn.php';
 } else {
@@ -31,6 +31,7 @@ try {
         echo '<h2>You Have No Books Stored</h2>';
     }
     foreach ($results as $row) {
+        // Check if row is empty (use default cover) and check url under users
         if ($row['cover'] == null && strpos($url, 'users') == true) {
             $imagePath = "/library/public/img/covers/default.jpg";
         } elseif ($row['cover'] !== null && strpos($url, 'users') == false) {
@@ -38,7 +39,7 @@ try {
         } else {
             $imagePath = "../public/img/covers/";
         } 
-
+        //Ony admin has permission to Edit/Delete a book under the users folder
         if (isset($_SESSION["username"]) && $row['permission'] == '1' && strpos($url, 'users') == true) {
             $actionButtons = '
             <legend>

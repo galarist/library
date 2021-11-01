@@ -4,12 +4,12 @@ if (isset($_POST['submit'])) {
     try {
         $dsn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
         $dsn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        // Input field call
-        $fName = $_POST['firstName'];
-        $lName = $_POST['lastName'];
-        $user = $_POST['username'];
-        $email = $_POST['email'];
-        $pwd = $_POST['password'];
+        // Input field call + sanitize
+        $fName = filter_var($_POST['firstName'], FILTER_SANITIZE_STRING);
+        $lName = filter_var($_POST['lastName'], FILTER_SANITIZE_STRING);
+        $user = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+        $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+        $pwd = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
         // Increase the default cost for BCRYPT to 12
         // Also switched to 60 characters (BCRYPT)
         $pwd = password_hash($pwd, PASSWORD_BCRYPT, array("cost" => 12));
@@ -82,6 +82,12 @@ if (isset($_POST['submit'])) {
             if (isset($message)) {
                 echo '<label class="textDanger">'.$message.'</label>';
             }
+
+            // Only admin can register
+            if (!isset($_SESSION["username"]) && $_SESSION['permission'] !== '1') {
+                header('Location: ../');
+            }
+            
         ?>
     </div>
 </body>

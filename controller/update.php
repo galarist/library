@@ -96,10 +96,10 @@ try {
             $dsn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
             $dsn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             // Input field call
-            $title = $_POST['title'];
-            $author = $_POST['author'];
-            $published = $_POST['published'];
-            $copies = $_POST['copies'];
+            $title = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
+            $author = filter_var($_POST['author'], FILTER_SANITIZE_STRING);
+            $published = filter_var($_POST['published'], FILTER_SANITIZE_NUMBER_INT);
+            $copies = filter_var($_POST['copies'], FILTER_SANITIZE_NUMBER_INT);
             // Update data
             $stmt = $dsn->prepare("UPDATE books, covers 
             SET title = :title,
