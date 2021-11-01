@@ -105,7 +105,7 @@ try {
             $published = filter_var($_POST['published'], FILTER_SANITIZE_NUMBER_INT);
             $copies = filter_var($_POST['copies'], FILTER_SANITIZE_NUMBER_INT);
             $ranking = filter_var($_POST['bookRanking'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-            $bookPlot = filter_var($_POST['bookPlot'], FILTER_SANITIZE_URL);
+            $bookPlot = filter_var($_POST['bookPlot'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             // Update data
             $stmt = $dsn->prepare("UPDATE books, covers 
             SET title = :title,
