@@ -24,9 +24,11 @@
     │   ├── signin.php
     │   ├── signout.php
     │   └── signup.php
-    └── view
-        ├── footer.php
-        └── header.php
+    ├── view
+    │   ├── footer.php
+    │   └── header.php
+    ├── README.md
+    └── index.php
 
 ## Extra Details:
 * In the _**conn.php**_ file under the `model` folder, the PDO connection using **`admin`** for both **username** and **password** to connect to the localhost database
