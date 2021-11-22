@@ -67,7 +67,6 @@ if (isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload') {
                                 VALUES ($last_id, '$newFileName');");
                                 $stmt->execute();
                                 //redirect to another page
-                                //header("refresh:2;url=/library/users/signin.php");
                             } else {
                                 $message = "An error occurred!";
                             }

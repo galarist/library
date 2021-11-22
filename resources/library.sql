@@ -38,6 +38,13 @@ CREATE TABLE covers (
     PRIMARY KEY (bookID)
 );
 
+/*CREATE TABLE FOR BOOK AUTHORS*/
+CREATE TABLE covers (
+    bookID int NOT NULL references books(bookID),
+    cover varchar(255),
+    PRIMARY KEY (bookID)
+);
+
 ALTER TABLE covers 
 ADD FOREIGN KEY (bookID) REFERENCES books(bookID);
 

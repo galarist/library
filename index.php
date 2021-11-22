@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <?php include('view/header.php'); ?>
+    <?php include('mvc/view/header.php'); ?>
     <header>
         <?php
         if (isset($_SESSION["username"])) {
@@ -20,9 +20,9 @@
         ?>
     </header>
     <section>
-        <?php include 'controller/read.php'; ?>
+        <?php include 'mvc/controller/read.php'; ?>
     </section>
-    <?php include('view/footer.php'); ?>
+    <?php include('mvc/view/footer.php'); ?>
 </body>
 
 </html>

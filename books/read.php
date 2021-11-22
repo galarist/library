@@ -5,9 +5,9 @@ ini_set('display_errors', "1");
 $url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 // Checkks if url contains /users/
 if (strpos($url, 'users') == true) {
-    require '../model/conn.php';
+    require '../mvc/model/conn.php';
 } else {
-    require 'model/conn.php';
+    require 'mvc/model/conn.php';
 }
 
 try {
