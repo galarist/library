@@ -1,5 +1,5 @@
 <?php
-require '../model/users.php';
+require '../model/users.model.php';
 if (isset($_POST['submit'])) {
     try {
         $dsn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);

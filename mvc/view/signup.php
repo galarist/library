@@ -1,5 +1,5 @@
 <?php
-require '../controller/users.php';
+require '../controller/users.controller.php';
 ?>
 
 <head>
