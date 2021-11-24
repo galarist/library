@@ -7,3 +7,5 @@ documentation.pdf
 public/trackedit.txt
 public/*.txt
 resources/trackedit.txt
+resources/tracker/*
+resources/tracker/trackedit.txt
