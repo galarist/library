@@ -74,7 +74,8 @@ $id = '';
 function update_books($newFileName, $bookIDSession, $title, $author, $bookPlot, $published, $ranking, $copies) {
     global $conn;
     $bookIDSession = $_SESSION['bookID'];
-    echo $bookIDSession;
+    $currentUser = $_SESSION["username"];
+    //echo $bookIDSession;
     // Update data
     $query = "UPDATE books, covers 
             SET title = '$title',
@@ -83,7 +84,8 @@ function update_books($newFileName, $bookIDSession, $title, $author, $bookPlot, 
                 published = '$published',
                 ranking = '$ranking',
                 copies = '$copies',
-                cover = '$newFileName'
+                cover = '$newFileName',
+                editedBy = '$currentUser'
             WHERE books.bookID = covers.bookID 
             AND books.bookID = '$bookIDSession'";
     $conn->exec($query);

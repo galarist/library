@@ -130,6 +130,10 @@ try {
             $bookPlot = filter_var($_POST['bookPlot'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             update_books($newFileName, $bookIDSession, $title, $author, $bookPlot, $published, $ranking, $copies);
             header("Refresh:0");
+            $edited = 'Edited by: '.$_SESSION['username'] ." | ". 'Edited bookID: ' . $_SESSION['bookID'];
+            $file = fopen("../../public/trackedit.txt", "a");
+            fwrite($file, $edited . PHP_EOL);
+            fclose($file);       
         } catch (PDOException $e) {
             $error = "Error: " . $e->getMessage();
             $message = $error;

@@ -31,7 +31,7 @@ CREATE TABLE books (
     copies int,
     added TIMESTAMP DEFAULT now(),
     updated TIMESTAMP ON UPDATE now(),
-    editedBy varchar(255) ON UPDATE,
+    editedBy varchar(255),
     PRIMARY KEY (bookID)
 );
 /*CREATE TABLE FOR BOOK COVERS*/
