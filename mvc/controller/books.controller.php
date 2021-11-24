@@ -131,7 +131,7 @@ try {
             update_books($newFileName, $bookIDSession, $title, $author, $bookPlot, $published, $ranking, $copies);
             header("Refresh:0");
             $edited = 'Edited by: '.$_SESSION['username'] ." | ". 'Edited bookID: ' . $_SESSION['bookID'];
-            $file = fopen("../../resources/tracker/trackedit.txt", "a");
+            $file = fopen("../../resources/tracker/trackedit.md", "a");
             fwrite($file, $edited . PHP_EOL);
             fclose($file);       
         } catch (PDOException $e) {
