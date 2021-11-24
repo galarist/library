@@ -50,7 +50,7 @@ try {
                     <label for="bookRanking">Book Ranking</label><br>
                     <input type="text" name="bookRanking" id="bookRanking" placeholder="Book Ranking" step="any" pattern="^([-+,0-9.]+)" value="' . filter_var($row['ranking'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION) . '"><br>
                     <label for="bookPlot">Book Plot</label><br>
-                    <textarea type="text" name="bookPlot" id="bookPlot" placeholder="Book Plot" pattern=".[a-zA-Z\W\s]{2,}">' . $row['bookPlot'] . '</textarea><br>
+                    <textarea type="text" name="bookPlot" id="bookPlot" placeholder="Book Plot" pattern=".[a-zA-Z\W\s]{2,}" required>' . $row['bookPlot'] . '</textarea><br>
                     <span class="containerSelect">
                         <span class="button-wrap">
                             <label class="new-button" for="cover">Change Cover</label>
