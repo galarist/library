@@ -4,8 +4,8 @@ ini_set('display_errors', "1");
 // $_SERVER['REQUEST_URI'] contains the URI of the current page
 $url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 // Checkks if url contains /users/
-if (strpos($url, 'users') == true) {
-    require '../mvc/model/conn.php';
+if (strpos($url, 'view') == true) {
+    require '../model/conn.php';
 } else {
     require 'mvc/model/conn.php';
 }
@@ -31,21 +31,23 @@ try {
         echo '<h2>You Have No Books Stored</h2>';
     }
     foreach ($results as $row) {
-        // Check if row is empty (use default cover) and check url under users
-        if ($row['cover'] == null && strpos($url, 'users') == true) {
-            $imagePath = "/library/public/img/covers/default.jpg";
-        } elseif ($row['cover'] !== null && strpos($url, 'users') == false) {
-            $imagePath = "public/img/covers/";
+        // Check if row is empty (use default cover) and check url under dashboard
+        if ($row['cover'] == null && strpos($url, 'view') == true) {
+            $imagePath = "../../public/img/covers/default.jpg";
+        } elseif ($row['cover'] == null && strpos($url, 'view') == false) {
+            $imagePath = "public/img/covers/default.jpg";
+        } elseif ($row['cover'] !== null && strpos($url, 'view') == true) {
+            $imagePath = "../../public/img/covers/";
         } else {
-            $imagePath = "../public/img/covers/";
+            $imagePath = "public/img/covers/";
         } 
         //Ony admin has permission to Edit/Delete a book under the users folder
-        if (isset($_SESSION["username"]) && $row['permission'] == '1' && strpos($url, 'users') == true) {
+        if (isset($_SESSION["username"]) && $row['permission'] == '1' && strpos($url, 'view') == true) {
             $actionButtons = '
             <legend>
                 <div>
-                    <a class="actionBtn" href="../controller/update.php?id='.$row['bookID'].'">Edit</a>
-                    <a class="actionBtn" href="../controller/delete.php?id='.$row['bookID'].'">Delete</a>
+                    <a class="actionBtn" href="../controller/books/update.php?id='.$row['bookID'].'">Edit</a>
+                    <a class="actionBtn" href="../controller/books/delete.php?id='.$row['bookID'].'">Delete</a>
                 </div>
             </legend>
             ';

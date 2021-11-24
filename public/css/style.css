@@ -4,6 +4,10 @@ body {
     box-sizing: border-box;
 }
 
+h2 {
+    margin: 0 0 60px;
+}
+
 header {
     padding-top: 60px;
     text-align: center;

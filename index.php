@@ -20,7 +20,7 @@
         ?>
     </header>
     <section>
-        <?php include 'mvc/controller/read.php'; ?>
+        <?php include 'mvc/view/books.php'; ?>
     </section>
     <?php include('mvc/view/footer.php'); ?>
 </body>

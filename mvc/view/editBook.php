@@ -10,47 +10,11 @@ if (strpos($url, 'view') == true) {
 } else if (strpos($url, 'controller') == true) {
     //echo "string";
 } else {
-    include 'mvc/controller/books.controller.php';
+    //include 'mvc/controller/books.controller.php';
 }
 
 try {
     foreach ($books as $row) {
-        // Check if row is empty (use default cover) and check url under dashboard
-        if ($row['cover'] == null && strpos($url, 'view') == true) {
-            $imagePath = "../../public/img/covers/default.jpg";
-        } elseif ($row['cover'] == null && strpos($url, 'view') == false) {
-            $imagePath = "public/img/covers/default.jpg";
-        } elseif ($row['cover'] !== null && strpos($url, 'view') == true) {
-            $imagePath = "../../public/img/covers/";
-        } else {
-            $imagePath = "public/img/covers/";
-        }
-        if (!isset($_GET['update'])) {
-            //Ony admin has permission to Edit/Delete a book under the users folder
-            if (isset($_SESSION["username"]) && $row['permission'] == '1' && strpos($url, 'view') == true) {
-                $actionButtons = '
-                <legend>
-                    <div>
-                        <a class="actionBtn" href="../controller/books.controller.php?update&id=' . $row['bookID'] . '">Edit</a>
-                        <a class="actionBtn" href="../controller/books.controller.php?delete&id=' . $row['bookID'] . '">Delete</a>
-                    </div>
-                </legend>
-                ';
-            } else {
-                $actionButtons = '';
-            }
-            echo '
-            <article>
-                <div>
-                    <fieldset id="details">
-                        ' . $actionButtons . '
-                        <img src="' . $imagePath . $row['cover'] . '" alt="Cover">
-                        <p id="author">Book Title:<br> ' . $row['title'] . '</p>
-                    </fieldset>
-                </div>
-            </article>
-            ';
-        } else {
             echo '
             <head>
             <meta charset="UTF-8">
@@ -65,9 +29,10 @@ try {
                 ';
             include '../view/header.php';
             echo "<header>Welcome <span>", $_SESSION["username"], "</span>! <br> Permission: ", $_SESSION["permission"] . "</header>";
+            $_SESSION['coverName'] = $row['cover'];
             echo '
             <div class="actionBar">
-                <form action="../controller/books.controller.php" method="POST" action="" enctype="multipart/form-data">
+                <form action="" method="POST" enctype="multipart/form-data">
                     <fieldset class="hidden">
                         <legend>
                             <h1>Edit Book</h1>
@@ -98,14 +63,13 @@ try {
                     <hr>
                 </form>
             </div>';
-            
+
             echo '
             <script src="../../public/js/functions.js"></script>
             </body>
             
             </html>
             ';
-        }
     }
 } catch (PDOException $error) {
     $message = $error->getMessage();

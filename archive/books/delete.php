@@ -1,5 +1,5 @@
 <?php
-require '../model/conn.php'; // Connection script
+require '../../model/conn.php'; // Connection script
 $id = $_GET['id']; // get id through query string
 session_start();
 // Only admin can edit
@@ -15,7 +15,7 @@ if (!isset($_SESSION["username"]) && $_SESSION['permission'] !== '1') {
         // use exec() because no results are returned
         $conn->exec($sql);
         echo "Record deleted successfully";
-        header("Location: ../users/dashboard.php");
+        header("Location: ../../view/dashboard.php");
     } catch(PDOException $e) {
         echo $sql . "<br>" . $e->getMessage();
     }

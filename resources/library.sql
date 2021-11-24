@@ -29,16 +29,12 @@ CREATE TABLE books (
     published int,
     ranking float,
     copies int,
+    added TIMESTAMP DEFAULT now(),
+    updated TIMESTAMP ON UPDATE now(),
+    editedBy varchar(255) ON UPDATE,
     PRIMARY KEY (bookID)
 );
 /*CREATE TABLE FOR BOOK COVERS*/
-CREATE TABLE covers (
-    bookID int NOT NULL references books(bookID),
-    cover varchar(255),
-    PRIMARY KEY (bookID)
-);
-
-/*CREATE TABLE FOR BOOK AUTHORS*/
 CREATE TABLE covers (
     bookID int NOT NULL references books(bookID),
     cover varchar(255),
