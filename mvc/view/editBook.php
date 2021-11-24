@@ -40,17 +40,17 @@ try {
                     </fieldset>
                     <input type="hidden" name="id" value="' . $row['bookID'] . '">
                     <label for="title">Title</label>
-                    <input type="text" name="title" id="title" placeholder="Title"  value="' . $row['title'] . '">
+                    <input type="text" name="title" id="title" placeholder="Title" maxlength="40" pattern=".[a-zA-Z\W\s]{2,}" value="' . $row['title'] . '">
                     <label for="author">Author</label>
-                    <input type="text" name="author" id="author" placeholder="Author" value="' . $row['author'] . '">
+                    <input type="text" name="author" id="author" placeholder="Author" maxlength="40" pattern=".[a-zA-Z\W\s]{2,}" value="' . $row['author'] . '">
                     <label for="published">First Published Year</label><br>
-                    <input type="text" name="published" id="published" placeholder="YYYY" value="' . $row['published'] . '"><br>
+                    <input type="text" name="published" id="published" placeholder="YYYY" pattern="[0-9]{4}" value="' . $row['published'] . '"><br>
                     <label for="copies">Copies</label><br>
-                    <input type="text" name="copies" id="copies" placeholder="Number Of Copies" value="' . $row['copies'] . '"><br>
+                    <input type="text" name="copies" id="copies" placeholder="Number Of Copies"  pattern="[0-9]{1,}" value="' . $row['copies'] . '"><br>
                     <label for="bookRanking">Book Ranking</label><br>
-                    <input type="text" name="bookRanking" id="bookRanking" placeholder="Book Ranking" value="' . filter_var($row['ranking'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION) . '"><br>
+                    <input type="text" name="bookRanking" id="bookRanking" placeholder="Book Ranking" step="any" pattern="^([-+,0-9.]+)" value="' . filter_var($row['ranking'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION) . '"><br>
                     <label for="bookPlot">Book Plot</label><br>
-                    <textarea type="text" name="bookPlot" id="bookPlot" placeholder="Book Plot">' . $row['bookPlot'] . '</textarea><br>
+                    <textarea type="text" name="bookPlot" id="bookPlot" placeholder="Book Plot" pattern=".[a-zA-Z\W\s]{2,}">' . $row['bookPlot'] . '</textarea><br>
                     <span class="containerSelect">
                         <span class="button-wrap">
                             <label class="new-button" for="cover">Change Cover</label>
