@@ -22,7 +22,7 @@ try {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="/library/public/css/style.css">
             <link rel="shortcut icon" href="/library/public/img/favicon.ico" type="image/x-icon">
-            <title>Sign In</title>
+            <title>Edit book</title>
             </head>
             
             <body>
