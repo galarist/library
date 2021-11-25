@@ -22,8 +22,7 @@ try {
 }
 // This block of code will logout the user after clicking logout
 if (isset($_GET['logout'])) {
-    //Session ends  
-    session_start();
+    //Session ends 
     session_destroy();
     header("location:/library"); 
 }

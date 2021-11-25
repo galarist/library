@@ -27,7 +27,7 @@ require '../controller/users.controller.php';
                 <label for="password"><b>Password</b></label>
                 <input type="password" name="password" required="required" pattern=".{8,}" title="Eight or more characters" placeholder="Password">
                 <label for="permission"><b>Permission</b></label>
-                <input type="text" name="permission" required="required" pattern="(^|\\s)(^.[0-1]{1})" minlength="1" title="Please use 0 or 1" placeholder="1 or 0">
+                <input type="text" name="permission" required="required" pattern="(^|\\s)([0-1]{1})" minlength="1" title="Please use 0 or 1" placeholder="1 or 0">
                 <button name="submit" type="submit">register</button>
             </div>
         </form>
@@ -39,6 +39,10 @@ require '../controller/users.controller.php';
         // Only admin can register
         if (!isset($_SESSION["username"]) && $_SESSION['permission'] !== '1') {
             header('Location: ../../');
+        }
+
+        if (isset($_SESSION["username"]) && $_SESSION['permission'] == '0') {
+            header('Location: profile.php');
         }
 
         ?>
