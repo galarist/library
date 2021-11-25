@@ -153,7 +153,7 @@ if (isset($_GET['delete'])) {
             if (isset($_SESSION["username"]) && $_SESSION['permission'] == '1') {
                 delete_books($id);
                 echo "Record deleted successfully";
-                //header("Location: ../view/dashboard.php");
+                header("Location: ../view/dashboard.php");
             } else {
                 header('Location: ../../');
             }
