@@ -94,7 +94,8 @@ function update_books($newFileName, $bookIDSession, $title, $author, $bookPlot, 
 // Will delete selected book
 function delete_books($id) {
     global $conn;
-    if (isset($_GET['delete'])) {
+    session_start();
+    if (isset($_GET['delete']) && $_SESSION['permission'] == '1') {
         $id = $_GET['id']; // get id through query string
     }
     // sql to delete a record

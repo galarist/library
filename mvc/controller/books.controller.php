@@ -81,15 +81,15 @@ $books = read_books();
 
 if (isset($_GET['update'])) {
     // Only admin can edit
-    if (!isset($_SESSION["username"]) && $_SESSION['permission'] !== '1') {
-        header('Location: ../../');
-    } else {
+    if (isset($_SESSION["username"]) && $_SESSION['permission'] == '1') {
         //The parameter you need is present
         include '../view/editBook.php';
         $id = $_REQUEST['id']; // get id through query string
         $_SESSION['bookID'] = $id;
         $bookIDSession = $_SESSION['bookID'];
         $id = $bookIDSession;
+    } else {
+        header('Location: ../../');
     }
 }
 
@@ -149,10 +149,14 @@ if (isset($_GET['delete'])) {
     if (!isset($_SESSION["username"]) && $_SESSION['permission'] !== '1') {
         header('Location: ../../');
     } else {
-        try {
-            delete_books($id);
-            echo "Record deleted successfully";
-            header("Location: ../view/dashboard.php");
+        try { // Only admin can edit
+            if (isset($_SESSION["username"]) && $_SESSION['permission'] == '1') {
+                delete_books($id);
+                echo "Record deleted successfully";
+                //header("Location: ../view/dashboard.php");
+            } else {
+                header('Location: ../../');
+            }
         } catch (PDOException $e) {
             //echo $sql . "<br>" . $e->getMessage();
         }
