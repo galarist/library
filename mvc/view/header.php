@@ -11,7 +11,7 @@ if (isset($_SESSION["username"])) {
 <?php } else { ?>
     <ul>
         <li><a class="active" href="/library">Home</a></li>
-        <?php /*If user is not set display Sign In*/ echo (!isset($_SESSION['username'])) ? '<li><a href="/library/mvc/view/authors.php">Authors</a></li><li><a href="/library/mvc/view/signin.php">Sign In</a></li>' : '' ?>
+        <?php /*If user is not set display Sign In*/ echo (!isset($_SESSION['username'])) ? '<li><a href="/library/mvc/view/signin.php">Sign In</a></li>' : '' ?>
     </ul>
 <?php
 }

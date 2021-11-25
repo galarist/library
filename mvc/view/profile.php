@@ -1,6 +1,11 @@
 <?php
 require '../controller/users.controller.php';
 //session_start();
+if (!isset($_SESSION["username"])) {
+    header("Location:/library");
+} elseif ($_SESSION['permission'] == 0) {
+    header("Location:/library");
+}
 ?>
 
 <head>
