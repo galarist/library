@@ -1,7 +1,7 @@
 <?php
 session_start();
 require '../model/conn.php';
-
+// Make a new user to the db
 function createUser($dsn, $fName, $lName, $user, $email, $pwd, $permission) {
     // Create user
     $stmt = $dsn->prepare("INSERT INTO users (permission, firstName, lastName, username, email, password) 
@@ -13,14 +13,15 @@ function createUser($dsn, $fName, $lName, $user, $email, $pwd, $permission) {
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':password', $pwd);
     $stmt->bindParam(':permission', $permission);
+    // execute 
     $stmt->execute();
 }
-
+// Function for user check
 function checkUser ($conn, $host, $dbname, $user, $password)
 {
     require '../model/conn.php';
-    $dsn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
-    $dsn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // $dsn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+    // $dsn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     // Input field call + sanitize
     $fName = filter_var($_POST['firstName'], FILTER_SANITIZE_STRING);
     $lName = filter_var($_POST['lastName'], FILTER_SANITIZE_STRING);
@@ -41,9 +42,11 @@ function checkUser ($conn, $host, $dbname, $user, $password)
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if (trim($permission) == '' || !isset($fName) || trim($lName) == '' || trim($user) == '' || trim($email) == '' || trim($pwd) == '') {
         $message = "You did not fill out the fields.";
+        // user exists
     } elseif ($row['num'] > 0) {
         $message = "Username already exists";
     } else {
+        // crate user
         createUser($dsn, $fName, $lName, $user, $email, $pwd, $permission);
         if ($stmt->execute()) {
             $message = "New account created.";
@@ -54,11 +57,11 @@ function checkUser ($conn, $host, $dbname, $user, $password)
     $_SESSION["message"] = $message;
     
 }
-
+// Function for login
 function userLogin($conn, $host, $dbname, $user, $password)
 {
-    $dsn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
-    $dsn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // $dsn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+    // $dsn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Ensure fields are not empty
     $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
@@ -105,8 +108,5 @@ function userLogin($conn, $host, $dbname, $user, $password)
             $message = '<label>Wrong username/password</label>';
         }
     }
-
-
-
 }
 ?>

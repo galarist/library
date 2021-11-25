@@ -1,4 +1,5 @@
 <?php
+// check for logged in user
 if (isset($_SESSION["username"])) {
 ?>
     <ul>

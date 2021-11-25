@@ -12,7 +12,7 @@ if (strpos($url, 'view') == true) {
 } else {
     //include 'mvc/controller/books.controller.php';
 }
-
+// check if username exists and has certain permission
 if (!isset($_SESSION["username"])) {
     header("Location:/library");
 } elseif ($_SESSION['permission'] == 0) {

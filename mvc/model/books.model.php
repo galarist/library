@@ -8,6 +8,7 @@ function create_books($dsn, $title, $author, $bookPlot, $published, $ranking, $c
 
     $stmt->bindValue(':title', $title, PDO::PARAM_INT);
     $stmt->execute();
+    // Represents the SQL INTEGER data type. PDO::PARAM_STR (int): Represents the SQL CHAR, VARCHAR, or other string data type
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if (trim($published) == '' || trim($copies) == '') {
         $message = "You did not fill out the fields.";
@@ -68,7 +69,7 @@ function read_books() {
     $query = $conn->prepare($database);
     $query->execute();
     $results = $query->fetchAll();
-    
+    // check if table has books
     if ($query->rowCount() > 0) {
     } else {
         echo '<h2>You Have No Books Stored</h2>';

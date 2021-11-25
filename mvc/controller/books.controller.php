@@ -7,6 +7,7 @@ $url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 if (strpos($url, 'view') == true) {
     require('../model/conn.php');
     require('../model/books.model.php');
+    // check url if contains /controller/ 
 } else if (strpos($url, 'controller') == true) {
     require('../model/conn.php');
     require('../model/books.model.php');
@@ -42,7 +43,7 @@ if (isset($_POST["uploadBtn"])) {
                     // directory in which the uploaded file will be moved
                     $uploadFileDir = '../../public/img/covers/';
                     $dest_path = $uploadFileDir . $newFileName;
-
+                    // check if file moved to the folder
                     if (move_uploaded_file($fileTmpPath, $dest_path)) {
                         $message = 'File is successfully uploaded.';
                         try {
@@ -56,7 +57,7 @@ if (isset($_POST["uploadBtn"])) {
                             $ranking = filter_var($_POST['bookRanking'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
                             $bookPlot = filter_var($_POST['bookPlot'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                             $cover = $newFileName;
-
+                            // call function
                             create_books($dsn, $title, $author, $bookPlot, $published, $ranking, $copies, $newFileName);
                         } catch (PDOException $e) {
                             $error = "Error: " . $e->getMessage();
@@ -167,7 +168,7 @@ if (isset($_GET['delete'])) {
                 header('Location: ../../');
             }
         } catch (PDOException $e) {
-            //echo $sql . "<br>" . $e->getMessage();
+            echo $e->getMessage();
         }
     }
 }

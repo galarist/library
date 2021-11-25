@@ -4,7 +4,7 @@ ini_set('display_errors', "1");
 // $_SERVER['SERVER_NAME'] gives the value of the server name as defined in host configuration
 // $_SERVER['REQUEST_URI'] contains the URI of the current page
 $url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-// Checkks if url contains /view/
+// Checkks if url contains /view/ or /controller/
 if (strpos($url, 'view') == true) {
     include '../controller/books.controller.php';
 } else if (strpos($url, 'controller') == true) {

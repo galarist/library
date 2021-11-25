@@ -20,7 +20,7 @@ require '../controller/users.controller.php';
         if (isset($message)) {
             echo '<label class="textDanger">' . $message . '</label>';
         }
-
+        // redirecting logged in user
         if (isset($_SESSION["username"])) {
             header("location:/library");
         }

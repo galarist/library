@@ -56,6 +56,7 @@ if (!isset($_SESSION["username"])) {
         </form>
     </div>
     <?php
+    // Message for submitting books
     if (isset($_SESSION['message']) && $_SESSION['message']) {
         printf('<b class="successMsg">%s</b>', $_SESSION['message']);
         unset($_SESSION['message']);
