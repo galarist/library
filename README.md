@@ -1,34 +1,39 @@
 # library
 ## Folder Structure:
     .
-    ├── controller
-    │   ├── create.php
-    │   ├── delete.php
-    │   ├── read.php
-    │   └── update.php
     ├── index.php
-    ├── model
-    │   └── conn.php
+    ├── library.sql
+    ├── mvc
+    │   ├── controller
+    │   │   ├── books.controller.php
+    │   │   └── users.controller.php
+    │   ├── model
+    │   │   ├── books.model.php
+    │   │   ├── conn.php
+    │   │   └── users.model.php
+    │   └── view
+    │       ├── books.php
+    │       ├── dashboard.php
+    │       ├── editBook.php
+    │       ├── footer.php
+    │       ├── header.php
+    │       ├── profile.php
+    │       ├── signin.php
+    │       └── signup.php
     ├── public
     │   ├── css
     │   │   └── style.css
-    │   └── img
-    │       ├── covers
-    │       │   └── default.jpg
-    │       └── favicon.ico
+    │   ├── img
+    │   │   ├── covers
+    │   │   │   └── default.jpg
+    │   │   └── favicon.ico
+    │   └── js
+    │       └── functions.js
     ├── README.md
-    ├── resources
-    │   └── library.sql
-    ├── users
-    │   ├── dashboard.php
-    │   ├── signin.php
-    │   ├── signout.php
-    │   └── signup.php
-    ├── view
-    │   ├── footer.php
-    │   └── header.php
-    ├── README.md
-    └── index.php
+    └── resources
+        ├── library.sql
+        └── tracker
+            └── trackedit.md
 
 ## Extra Details:
 * In the _**conn.php**_ file under the `model` folder, the PDO connection using **`admin`** for both **username** and **password** to connect to the localhost database
