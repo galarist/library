@@ -76,9 +76,9 @@ if (isset($_POST["uploadBtn"])) {
         $_SESSION['message'] = $message;
     }
 }
-
+// Read the book(s)
 $books = read_books();
-
+// Call the selectedd book
 if (isset($_GET['update'])) {
     // Only admin can edit
     if (isset($_SESSION["username"]) && $_SESSION['permission'] == '1') {
@@ -92,7 +92,7 @@ if (isset($_GET['update'])) {
         header('Location: ../../');
     }
 }
-
+// This will update the selected book
 try {
     foreach ($books as $key) {}
     $message = "";
@@ -129,6 +129,10 @@ try {
             $ranking = filter_var($_POST['bookRanking'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $bookPlot = filter_var($_POST['bookPlot'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             update_books($newFileName, $bookIDSession, $title, $author, $bookPlot, $published, $ranking, $copies);
+            echo '
+                <script type="text/javascript">
+                if (window.confirm("Book has been updated")) { } else { }
+                </script>';
             header("Refresh:0");
             $edited = 'Edited by: '.$_SESSION['username'] ." | ". 'Edited bookID: ' . $_SESSION['bookID'];
             $file = fopen("../../resources/tracker/trackedit.md", "a");
@@ -153,7 +157,12 @@ if (isset($_GET['delete'])) {
             if (isset($_SESSION["username"]) && $_SESSION['permission'] == '1') {
                 delete_books($id);
                 echo "Record deleted successfully";
-                header("Location: ../view/dashboard.php");
+                echo '
+                <script type="text/javascript">
+                if (window.confirm("Book has been removed")) {
+                    window.location.href = "../view/dashboard.php";
+                } else { window.location.href = "../view/dashboard.php"; }
+                </script>';
             } else {
                 header('Location: ../../');
             }

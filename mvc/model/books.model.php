@@ -30,12 +30,18 @@ function create_books($dsn, $title, $author, $bookPlot, $published, $ranking, $c
             $stmt = $dsn->prepare("INSERT INTO covers (bookID, cover) 
                                     VALUES ($last_id, '$newFileName');");
             $stmt->execute();
-            //redirect to another page
-            header("Location: ../view/dashboard.php");
+            $_SESSION['addBook'] = $message;
         } else {
             $message = "An error occurred!";
+            $_SESSION['addBook'] = $message;
         }
     }
+    echo '
+    <script type="text/javascript">
+    if (window.confirm("Data has been submitted to ' . $_SESSION['addBook'] . '")) {
+        window.location.href = "../view/dashboard.php";
+    } else { window.location.href = "../view/dashboard.php"; }
+    </script>';
 }
 // Reading the books from the databse
 function read_books() {
