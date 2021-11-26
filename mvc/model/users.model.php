@@ -20,8 +20,8 @@ function createUser($dsn, $fName, $lName, $user, $email, $pwd, $permission) {
 function checkUser ($conn, $host, $dbname, $user, $password)
 {
     require '../model/conn.php';
-    // $dsn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
-    // $dsn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $dsn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+    $dsn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     // Input field call + sanitize
     $fName = filter_var($_POST['firstName'], FILTER_SANITIZE_STRING);
     $lName = filter_var($_POST['lastName'], FILTER_SANITIZE_STRING);

@@ -46,6 +46,9 @@ try {
                         ' . $actionButtons . '
                         <img src="' . $imagePath . $row['cover'] . '" alt="Cover">
                         <p id="author">Book Title:<br> ' . $row['title'] . '</p>
+                        <p id="author">Book created:<br> ' . $row['added'] . '</p>
+                        <p id="author">Book Updated By:<br> ' . $row['updated'] . '</p>
+                        <p id="author">Book Edited By:<br> ' . $row['editedBy'] . '</p>
                     </fieldset>
                 </div>
             </article>

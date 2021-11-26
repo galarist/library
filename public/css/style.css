@@ -234,6 +234,7 @@ article {
     defines the line names and track sizing functions of the grid columns. */
     grid-template-columns: 280px 300px 100px;
     grid-gap: 3px;
+    margin-bottom: 120px;
 }
 
 article img {
